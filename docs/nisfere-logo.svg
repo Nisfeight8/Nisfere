@@ -1,0 +1,58 @@
+<svg width="640" height="220" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgFade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14161d"/>
+      <stop offset="100%" stop-color="#0e0f14"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="220" fill="url(#bgFade)"/>
+
+  <!-- Wordmark — single color, single text element, text-anchor="middle".
+       Kept deliberately simple (no internal tspans) after testing showed
+       different SVG renderers disagree on how text-anchor should center
+       a run containing multiple color-changed tspans (some center the
+       whole run, some re-center each tspan independently around the same
+       point) — not a risk worth taking on the one thing that must be
+       correctly centered. -->
+  <text x="320" y="110" text-anchor="middle" font-family="'JetBrains Mono','Fira Code',ui-monospace,monospace" font-size="64" font-weight="700" letter-spacing="1" fill="#eae6da">Nisfere</text>
+
+  <!-- Blinking terminal caret — a SEPARATE, independently-positioned
+       element (not fused into the wordmark's own text run), placed just
+       past the wordmark's estimated right edge. Monospace fonts have a
+       fairly consistent advance-width-to-font-size ratio (~0.6), so
+       "7 characters at font-size 64" gives a reliable enough estimate to
+       sit immediately after the text without needing to measure it —
+       tuned empirically against the rendered output. -->
+  <text x="466" y="110" font-family="'JetBrains Mono','Fira Code',ui-monospace,monospace" font-size="64" font-weight="700" fill="#7dd3c0">▏
+    <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.45;0.5;0.95;1" dur="1.6s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- Tagline -->
+  <text x="320" y="142" text-anchor="middle" font-family="-apple-system,'Segoe UI',sans-serif" font-size="17" fill="#9a9ba3">A Hyprland desktop shell for developers</text>
+
+  <!-- Dev-tool chips — plain ASCII/monospace labels, not literal brand
+       logos (GitHub's/Docker's actual marks are trademarked; text labels
+       sidestep that entirely and read as more "terminal", fitting the
+       rest of the design better than colored icon glyphs would). One
+       muted accent color, thin outline, no fill — reads as a row of
+       terminal tags, not a palette. -->
+  <g transform="translate(320 164)" font-family="'JetBrains Mono','Fira Code',ui-monospace,monospace" font-size="14" fill="#7dd3c0">
+    <g transform="translate(-172 0)">
+      <rect x="0" y="0" width="72" height="26" rx="4" fill="none" stroke="#7dd3c0" stroke-opacity="0.5"/>
+      <text x="36" y="18" text-anchor="middle">[git]</text>
+    </g>
+    <g transform="translate(-92 0)">
+      <rect x="0" y="0" width="96" height="26" rx="4" fill="none" stroke="#7dd3c0" stroke-opacity="0.5"/>
+      <text x="48" y="18" text-anchor="middle">[docker]</text>
+    </g>
+    <g transform="translate(12 0)">
+      <rect x="0" y="0" width="72" height="26" rx="4" fill="none" stroke="#7dd3c0" stroke-opacity="0.5"/>
+      <text x="36" y="18" text-anchor="middle">[ssh]</text>
+    </g>
+    <g transform="translate(92 0)">
+      <rect x="0" y="0" width="80" height="26" rx="4" fill="none" stroke="#7dd3c0" stroke-opacity="0.5"/>
+      <text x="40" y="18" text-anchor="middle">[$_]</text>
+    </g>
+  </g>
+</svg>
