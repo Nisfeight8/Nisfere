@@ -127,7 +127,6 @@ Item {
                                 Layout.preferredWidth: 110 * root.uiScale
                                 Layout.preferredHeight: 32 * root.uiScale
                                 onTapped: {
-                                    ShellState.closeDashboard();
                                     avatarDialog.open();
                                 }
                             }
