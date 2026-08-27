@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+
+# Daemon runtime logs (stray, shouldn't be tracked)
+daemon/output.log
+daemon/output2.log
+
+# Runtime-generated, lives in ~/.cache/nisfere in a real install —
+# only relevant here if you're testing against a repo-local cache path.
+*.log
+
+# packaging/<pkgname>/ folders should only ever track PKGBUILD.
+# Everything else in there (src/, pkg/, built .pkg.tar.* files, .SRCINFO,
+# makepkg logs, or a full nested git checkout if you ever clone one
+# there directly) is build-time output or scratch space, recreated
+# fresh by makepkg every run — never something to commit.
+#
+# The /* (not a bare trailing /) is deliberate: it matches CONTENTS of
+# each packaging/<name>/ folder individually, rather than the folder
+# itself as one ignored entry. If the folder itself were ignored as a
+# single unit, git would never look inside it again at all, and the
+# negation rule below couldn't "un-ignore" one specific file inside —
+# matching per-file like this is what makes the exception work.
+packaging/*/*
+!packaging/*/PKGBUILD

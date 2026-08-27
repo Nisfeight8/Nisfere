@@ -1,0 +1,13 @@
+[Unit]
+Description=Nisfere shell daemon socket
+
+[Socket]
+ListenStream=/tmp/nisfere-shell.sock
+SocketMode=0600
+# Deletes the socket file on stop so a stale file never lingers —
+# replaces DevShellSocket._remove_stale_socket()'s job for this path,
+# since systemd itself now owns the file's lifecycle.
+RemoveOnStop=true
+
+[Install]
+WantedBy=graphical-session.target

@@ -1,0 +1,56 @@
+# All graphs and meters can be gradients
+# For single color graphs leave "mid" and "end" variable empty.
+# Use "start" and "end" variables for two color gradient
+# Use "start", "mid" and "end" for three color gradient
+
+# TEXT
+theme[main_fg]="#c0caf5"          # Main text color
+theme[title]="#c0caf5"            # Title color for boxes
+theme[hi_fg]="#7aa2f7"                # Higlight color for keyboard shortcuts
+theme[inactive_fg]="#414868"          # Color of inactive/disabled text
+theme[graph_text]="#7aa2f7"           # Color of text appearing on top of graphs
+
+# OTHER
+theme[main_bg]="#1a1b26"          # Main background
+theme[selected_bg]="#7aa2f7"          # Background color of selected item
+theme[selected_fg]="#1a1b26"      # Foreground color of selected item
+theme[proc_misc]="#7aa2f7"            # Misc colors for processes box
+
+# OUTLINES
+theme[cpu_box]="#e0af68"              # Cpu box outline color
+theme[mem_box]="#9ece6a"              # Memory/disks box outline color
+theme[net_box]="#f7768e"              # Net up/down box outline color
+theme[proc_box]="#7dcfff"             # Processes box outline color
+theme[div_line]="#7aa2f7"             # Box divider line and small boxes line color
+
+# METERS
+theme[meter_bg]="#414868"             # Background color of the percentage meters
+theme[used_start]="#7aa2f7"           # Mem/Disk used meter
+theme[used_mid]=""
+theme[used_end]="#7aa2f7"
+theme[available_start]="#7dcfff"      # Mem/Disk available meter
+theme[available_mid]=""
+theme[available_end]="#7dcfff"
+theme[cached_start]="#7aa2f7"         # Mem/Disk cached meter
+theme[cached_mid]=""
+theme[cached_end]="#7aa2f7"
+theme[free_start]="#7dcfff"           # Mem/Disk free meter
+theme[free_mid]=""
+theme[free_end]="#7dcfff"
+
+# GRAPHS
+theme[temp_start]="#7aa2f7"           # Temperature graph colors (Dynamic)
+theme[temp_mid]="#bb9af7"
+theme[temp_end]="#f7768e"
+theme[cpu_start]="#e0af68"           # CPU graph colors
+theme[cpu_mid]="#9ece6a"
+theme[cpu_end]="#f7768e"
+theme[download_start]="#7aa2f7"       # Download graph colors
+theme[download_mid]="#f7768e"
+theme[download_end]="#f7768e"  
+theme[upload_start]="#9ece6a"        # Upload graph colors
+theme[upload_mid]="#9ece6a"
+theme[upload_end]="#7dcfff"
+theme[process_start]="#7aa2f7"        # Process box color gradient
+theme[process_mid]="#7dcfff"
+theme[process_end]="#7aa2f7"

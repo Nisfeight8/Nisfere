@@ -1,0 +1,9 @@
+[font]
+size = 10
+
+builtin_box_drawing = true
+
+normal = { family = "NotoMono Nerd Font", style = "Regular" }
+bold = { family = "NotoMono Nerd Font", style = "Bold" }
+italic = { family = "NotoMono Nerd Font", style = "Italic" }
+bold_italic = { family = "NotoMono Nerd Font", style = "Bold Italic" }

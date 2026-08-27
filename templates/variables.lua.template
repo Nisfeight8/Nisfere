@@ -1,0 +1,54 @@
+return {
+    ------------------
+    ---- COLORS ------
+    ------------------
+    bg_color              = "rgb({{ background | strip }})",
+    fg_color              = "rgb({{ foreground | strip }})",
+    active_border         = "rgba({{ accent | strip }}ee)",
+    inactive_border       = "rgba({{ backgroundAlt | strip }}aa)",
+    shadow_color          = "rgba(00000066)",
+    ------------------
+    ---- GAPS --------
+    ------------------
+    workspaceGaps         = {{ workspaceGaps }},
+    windowGapsIn          = {{ windowGapsIn }},
+    windowGapsOut         = {{ windowGapsOut }},
+
+    ------------------
+    ---- BORDERS -----
+    ------------------
+    windowRounding        = {{ radius }},
+    windowBorderSize      = {{ windowBorderSize }},
+    ------------------
+    ---- OPACITY -----
+    ------------------
+    opacityActive         = {{ opacityActive }},
+    opacityInactive       = {{ opacityInactive }},
+    opacityFullscreen     = {{ opacityFullscreen }},
+    ------------------
+    ---- BLUR --------
+    ------------------
+    blurEnabled           = {{ blurEnabled | lua_bool }},
+    blurSize              = {{ blurSize }},
+    blurPasses            = {{ blurPasses }},
+    blurPopups            = {{ blurPopups | lua_bool }},
+    ------------------
+    ---- SHADOW ------
+    ------------------
+    shadowEnabled         = {{ shadowEnabled | lua_bool }},
+    shadowRange           = {{ shadowRange }},
+    shadowRenderPower     = {{ shadowRenderPower }},
+    ------------------
+    ---- MISC --------
+    ------------------
+    cursorTheme           = "{{ cursorTheme }}",
+    cursorSize            = {{ cursorSize }},
+    ------------------
+    ---- FONT --------
+    ------------------
+    fontName              = "{{ fontName }}",
+    ------------------
+    ---- GENERAL SETTINGS --------
+    ------------------
+    workspacesPerMonitor              = {{ workspacesPerMonitor }}
+}

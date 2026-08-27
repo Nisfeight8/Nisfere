@@ -1,0 +1,56 @@
+# All graphs and meters can be gradients
+# For single color graphs leave "mid" and "end" variable empty.
+# Use "start" and "end" variables for two color gradient
+# Use "start", "mid" and "end" for three color gradient
+
+# TEXT
+theme[main_fg]="{{foreground}}"          # Main text color
+theme[title]="{{foreground}}"            # Title color for boxes
+theme[hi_fg]="{{color4}}"                # Higlight color for keyboard shortcuts
+theme[inactive_fg]="{{color8}}"          # Color of inactive/disabled text
+theme[graph_text]="{{color4}}"           # Color of text appearing on top of graphs
+
+# OTHER
+theme[main_bg]="{{background}}"          # Main background
+theme[selected_bg]="{{color4}}"          # Background color of selected item
+theme[selected_fg]="{{background}}"      # Foreground color of selected item
+theme[proc_misc]="{{color4}}"            # Misc colors for processes box
+
+# OUTLINES
+theme[cpu_box]="{{color3}}"              # Cpu box outline color
+theme[mem_box]="{{color2}}"              # Memory/disks box outline color
+theme[net_box]="{{color1}}"              # Net up/down box outline color
+theme[proc_box]="{{color6}}"             # Processes box outline color
+theme[div_line]="{{color4}}"             # Box divider line and small boxes line color
+
+# METERS
+theme[meter_bg]="{{color8}}"             # Background color of the percentage meters
+theme[used_start]="{{color4}}"           # Mem/Disk used meter
+theme[used_mid]=""
+theme[used_end]="{{color4}}"
+theme[available_start]="{{color6}}"      # Mem/Disk available meter
+theme[available_mid]=""
+theme[available_end]="{{color14}}"
+theme[cached_start]="{{color4}}"         # Mem/Disk cached meter
+theme[cached_mid]=""
+theme[cached_end]="{{color4}}"
+theme[free_start]="{{color6}}"           # Mem/Disk free meter
+theme[free_mid]=""
+theme[free_end]="{{color14}}"
+
+# GRAPHS
+theme[temp_start]="{{color4}}"           # Temperature graph colors (Dynamic)
+theme[temp_mid]="{{color5}}"
+theme[temp_end]="{{color1}}"
+theme[cpu_start]="{{color11}}"           # CPU graph colors
+theme[cpu_mid]="{{color10}}"
+theme[cpu_end]="{{color9}}"
+theme[download_start]="{{color4}}"       # Download graph colors
+theme[download_mid]="{{color1}}"
+theme[download_end]="{{color9}}"  
+theme[upload_start]="{{color10}}"        # Upload graph colors
+theme[upload_mid]="{{color2}}"
+theme[upload_end]="{{color6}}"
+theme[process_start]="{{color4}}"        # Process box color gradient
+theme[process_mid]="{{color14}}"
+theme[process_end]="{{color4}}"

@@ -1,0 +1,5 @@
+{
+    "qt-qml.qmlls.path": "/usr/bin/qmlls6",
+    "qt-qml.qmlls.useQmlImportPathEnvVar": true,
+    "qt-qml.qmlls.debug": true
+}

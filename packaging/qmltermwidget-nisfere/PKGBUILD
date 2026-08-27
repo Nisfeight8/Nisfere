@@ -1,0 +1,58 @@
+# Maintainer: nisfere (patched fork of qmltermwidget-git)
+# Original Maintainer: Adam Perkowski <adas1per@protonmail.com>
+# Original Contributor: Doug Newgard <scimmia at archlinux dot info>
+#
+# Fork of Swordfish90/qmltermwidget with one patch: TerminalDisplay::
+# setColorScheme() now calls findColorScheme(name) directly instead of
+# gating every lookup on the once-ever-cached availableColorSchemes()
+# list — the cached list never sees a color-scheme file created AFTER
+# the process started, so a live theme change was silently ignored
+# (falling back to the default scheme) until a full restart forced a
+# fresh scan. See nisfere's own install.sh/chat for the full diagnosis.
+
+
+_pkgname=qmltermwidget
+pkgname=$_pkgname-nisfere
+pkgrel=1
+pkgver=r831.7b7892e
+pkgdesc='QML port of qtermwidget - nisfere fork (live colorscheme reload fix)'
+arch=('i686' 'x86_64')
+url="https://github.com/Nisfeight8/$_pkgname"
+license=('GPL-2.0')
+# Was qt5-declarative — the actual source uses Qt6-only APIs
+# (Qt::Literals::StringLiterals, QStringView::sliced, etc. — confirmed
+# by the build errors when compiled against Qt5 headers). This project
+# migrated to Qt6; qt5-declarative was a leftover from the original
+# AUR PKGBUILD this was adapted from, predating that migration.
+depends=('qt6-declarative')
+makedepends=('git' 'qt6-base')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+source=("git+https://github.com/Nisfeight8/$_pkgname")
+sha512sums=(SKIP)
+
+pkgver () {
+  cd "$srcdir/$_pkgname"
+  # Was `git describe --tags --abbrev=0` — failed with "No names
+  # found, cannot describe anything" because makepkg's git-source
+  # fetch of your fork didn't have any tags reachable in this
+  # checkout (even though the fork itself has them on GitHub).
+  # Commit-count + short-hash needs no tags at all, so it can't hit
+  # this failure mode regardless of how the source was fetched.
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$srcdir/$_pkgname"
+  # Was bare `qmake` — on Arch this always resolves to Qt5's qmake
+  # (qt5-base owns the unversioned name), regardless of Qt6 also
+  # being installed. qmake6 is Qt6's own binary name specifically —
+  # this is what actually picks the right Qt6 headers/toolchain.
+  qmake6
+  make
+}
+
+package() {
+  cd "$srcdir/$_pkgname"
+  make -j1 INSTALL_ROOT="$pkgdir" install
+}

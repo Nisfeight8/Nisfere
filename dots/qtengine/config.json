@@ -1,0 +1,22 @@
+{
+  "theme": {
+    "colorScheme": "/home/nisfeight/.config/qtengine/nisfere.colors",
+    "iconTheme": "Papirus",
+    "style": "Darkly",
+    "font": {
+      "family": "Noto Sans",
+      "size": 11,
+      "weight": -1
+    },
+    "fontFixed": {
+      "family": "NotoMono Nerd Font",
+      "size": 11,
+      "weight": -1
+    }
+  },
+  "misc": {
+    "menusHaveIcons": true,
+    "singleClickActivate": true,
+    "shortcutsForContextMenus": true
+  }
+}

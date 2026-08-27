@@ -1,0 +1,21 @@
+[Unit]
+Description=Nisfere shell daemon
+# No longer needs After=graphical-session.target for startup-ordering
+# purposes — socket activation means this service only ever starts in
+# response to the first incoming connection on nisfere-daemon.socket,
+# so ordering relative to the graphical session no longer matters the
+# same way. Kept anyway as a sane logical dependency.
+After=graphical-session.target nisfere-daemon.socket
+Requires=nisfere-daemon.socket
+
+[Service]
+Type=simple
+WorkingDirectory=%h/.config/nisfere/daemon
+ExecStart=/usr/bin/python3 main.py
+Restart=on-failure
+RestartSec=2
+
+# No [Install] section — this unit is no longer enabled directly.
+# Only nisfere-daemon.socket gets `systemctl --user enable`d; systemd
+# starts THIS service automatically (same basename convention) the
+# first time a client connects to the socket.
