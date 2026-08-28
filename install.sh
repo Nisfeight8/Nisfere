@@ -269,7 +269,7 @@ if [[ $UPDATE_MODE -eq 0 ]]; then
 if ! command -v yay >/dev/null 2>&1; then
     step "Installing yay (AUR helper)"
     log "Installing git + base-devel (build prerequisites)..."
-    run sudo pacman -S --needed --noconfirm git base-devel
+    run sudo pacman -S --needed --noconfirm git base-devel go
     tmp_yay="$(mktemp -d)"
     run_quiet "Cloning yay from the AUR" git clone https://aur.archlinux.org/yay.git "$tmp_yay/yay"
     # Same build/install split as qmltermwidget below: compile quietly in
