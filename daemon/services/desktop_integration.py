@@ -200,6 +200,8 @@ class DesktopIntegration:
             f"gtk-cursor-theme-name={cursor_theme}\n"
             f"gtk-cursor-theme-size={cursor_size}\n"
             f"gtk-application-prefer-dark-theme={'1' if mode == 'dark' else '0'}\n"
+            "gtk-button-images=1\n"
+            "gtk-menu-images=1\n"
         )
 
         for gtk_dir in ("gtk-3.0", "gtk-4.0"):
