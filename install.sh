@@ -489,6 +489,18 @@ log "Applying Papirus icon theme (best-effort gsettings, harmless if it no-ops).
 run gsettings set org.gnome.desktop.interface icon-theme 'Papirus' || true
 run gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark' || true
 
+log "Copying Papirus into ~/.local/share/icons (user-writable, for papirus-folders etc.)..."
+run mkdir -p "$HOME/.local/share/icons"
+for variant in Papirus Papirus-Dark Papirus-Light; do
+    src="/usr/share/icons/$variant"
+    dst="$HOME/.local/share/icons/$variant"
+    if [[ -d "$src" && ! -d "$dst" ]]; then
+        run cp -r "$src" "$dst"
+    fi
+done
+run gtk-update-icon-cache -f "$HOME/.local/share/icons/Papirus" 2>/dev/null || true
+
+
 if [[ $DRY_RUN -eq 1 ]]; then
     warn "Skipping the sudoers prompt in dry-run mode."
 else
