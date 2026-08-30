@@ -19,33 +19,34 @@ import qs.services
 //      and ScreenBorder's mask Region slots over activePopupItems.
 Item {
     id: root
-
     default property Component contentComponent
     required property bool showPopup
     required property Item targetItem
+    required property PanelWindow hostWindow
 
-    // Resolved once here, at the one place in this file that already
-    // needs QsWindow.window?.screen (for scaledBarHeight) — passed
-    // down to PopupContainer, which exposes it further to whatever
-    // contentComponent is loaded inside, so popup content doesn't
-    // need to re-derive this independently.
-    readonly property real uiScale: Theme.scaleFor(QsWindow.window?.screen)
+    property bool _parented: false
 
-    // Reparent into the hosting window's root content item —
-    // targetItem.QsWindow.window resolves to whichever actual window
-    // (screen) hosts targetItem, same per-screen correctness the old
-    // anchor.window: targetItem.QsWindow.window gave for free, just
-    // expressed as a runtime reparent instead of a window anchor.
-    parent: targetItem.QsWindow.window ? targetItem.QsWindow.window.contentItem : null
-    // Above Dashboard/ControlCenter/SystemDrawer/Overview — the
-    // highest z already in use in ScreenBorder is overviewLoader's 50.
+    function _tryParent() {
+        if (_parented) return;
+        if (!hostWindow || !hostWindow.screen || !hostWindow.contentItem) return;
+        root.parent = hostWindow.contentItem;
+        _parented = true;
+    }
+
+    Component.onCompleted: _tryParent()
+    onHostWindowChanged: _tryParent()
+
+    readonly property real uiScale:
+        (hostWindow && hostWindow.screen) ? Theme.scaleFor(hostWindow.screen) : 1
+
     z: 200
 
-    readonly property real targetX: targetItem.mapToItem(root.parent, 0, 0).x + (targetItem.width / 2) - (implicitWidth / 2)
-    // Anchored to the bar's own height, not targetItem's position —
-    // every bar popup now opens from directly under the bar itself,
-    // regardless of which widget triggered it.
-    readonly property real targetY: Theme.scaledBarHeight(QsWindow.window?.screen)
+    readonly property real targetX:
+        targetItem.mapToItem(root.parent, 0, 0).x
+        + (targetItem.width / 2) - (implicitWidth / 2)
+
+    readonly property real targetY:
+        (hostWindow && hostWindow.screen) ? Theme.scaledBarHeight(hostWindow.screen) : 0
 
     x: Math.max(10, targetX)
     y: targetY

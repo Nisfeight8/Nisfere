@@ -5,7 +5,6 @@ import qs.services
 
 BarWidget {
     id: launcherBtn
-
     useGradient: true
 
     Text {

@@ -10,23 +10,23 @@ import qs.services
 BarWidget {
     id: root
 
-    readonly property string screenName: QsWindow.window?.screen?.name ?? ""
-    readonly property var activeWin: HyprlandData.activeWindowForScreen(screenName)
+    useGradient: true
+    naturalContentWidth: iconText.implicitWidth + root.contentRow.spacing + Math.min(titleText.implicitWidth, 400)
+    
+    property bool popupOpen: false
+    property bool popupContentHovered: false
+    property bool captureActive: false
 
+    readonly property string screenName: hostWindow?.screen?.name ?? ""
+    readonly property var activeWin: HyprlandData.activeWindowForScreen(screenName)
     readonly property bool hasWindow: activeWin !== null
     readonly property string windowClass: (hasWindow && activeWin.lastIpcObject.class) ? activeWin.lastIpcObject.class : ""
     readonly property string windowTitle: hasWindow ? activeWin.title : "Desktop"
     readonly property string iconName: hasWindow && windowClass !== "" ? Icons.getAppIcon(windowClass) : Icons.getAppIcon("desktop")
-    useGradient: true
-
     readonly property bool isHovered: winHover.hovered
-    property bool popupOpen: false
-    property bool popupContentHovered: false
     readonly property bool anyHovered: winHover.hovered || root.popupContentHovered
 
-    property bool captureActive: false
-
-    naturalContentWidth: iconText.implicitWidth + root.contentRow.spacing + Math.min(titleText.implicitWidth, 400)
+    
 
     onPopupOpenChanged: {
         if (popupOpen) {
@@ -93,7 +93,7 @@ BarWidget {
 
         showPopup: root.popupOpen
         targetItem: root
-
+        hostWindow: root.hostWindow
         ColumnLayout {
             spacing: 10 * winPopup.uiScale
 

@@ -1,11 +1,11 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import qs.core
 import qs.services
 
 BarWidget {
     id: kbWidget
-
     useGradient: true
 
     property bool popupOpened: false
@@ -40,7 +40,7 @@ BarWidget {
 
         showPopup: kbWidget.popupOpened
         targetItem: kbWidget
-
+        hostWindow: kbWidget.hostWindow
         ColumnLayout {
             spacing: 10 * kbPopup.uiScale
 

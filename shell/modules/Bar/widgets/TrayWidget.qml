@@ -6,11 +6,11 @@ import qs.core
 
 BarWidget {
     id: trayWidget
-
-    property var activeMenuHandle: null
-
     useGradient: true
     visible: trayRepeater.count > 0
+    
+    property var activeMenuHandle: null
+    
 
     Repeater {
         id: trayRepeater
@@ -85,6 +85,7 @@ BarWidget {
 
         showPopup: trayWidget.activeMenuHandle !== null
         targetItem: trayWidget
+        hostWindow: trayWidget.hostWindow
 
         ListView {
             id: menuList

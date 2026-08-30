@@ -6,11 +6,10 @@ import qs.services
 
 BarWidget {
     id: clockWidget
-
-    property bool opened: false
-
     bgColor: "transparent"
     spacing: 8
+
+    property bool opened: false
 
     // ── Main click zone: calendar + date/time → toggle Tabs ────────
     Item {

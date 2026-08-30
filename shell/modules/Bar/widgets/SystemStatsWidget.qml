@@ -5,11 +5,9 @@ import qs.services
 
 BarWidget {
     id: root
+    useGradient: true
 
     property bool statsOpen: false
-
-    useGradient: true
-    
 
     // ── CPU ──────────────────────────────────────────────────────
     Item {

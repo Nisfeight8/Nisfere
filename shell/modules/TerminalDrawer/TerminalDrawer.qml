@@ -14,7 +14,7 @@ BaseDrawer {
     edge: Qt.BottomEdge
     openedRequest: ShellState.terminalOpened
     minPanelHeight: 550 * Theme.scaleFor(screen)
-    minPanelWidth: screen.width / 1.1 * Theme.scaleFor(screen)
+    minPanelWidth: screen ? screen.width / 1.1 * Theme.scaleFor(screen) : 0
     // Open/close is keyboard-driven now (see IpcHandlers.qml's
     // "terminal" target) — false here so the drawer doesn't ALSO
     // auto-close itself whenever the mouse happens to leave it, which

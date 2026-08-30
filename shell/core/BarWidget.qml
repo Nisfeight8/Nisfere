@@ -4,21 +4,24 @@ import qs.core
 
 Item {
     id: root
+    
+    required property PanelWindow hostWindow
 
-    readonly property real _uiScale: Theme.scaleFor(QsWindow.window?.screen)
-    property color bgColor: Theme.backgroundAlt
+    readonly property real _uiScale: Theme.scaleFor(hostWindow?.screen)
+    readonly property int widgetHeight: Theme.scaledBarHeight(hostWindow?.screen) - (15 * _uiScale)
+    readonly property real iconSize: Math.max(13, widgetHeight * 0.55)
+    readonly property real fontSize: Math.max(11, widgetHeight * 0.37)
+    readonly property real smallFontSize: Math.max(9, widgetHeight * 0.31)
+    readonly property alias contentRow: contentRow
+
     default property alias content: contentRow.data
+
+    property color bgColor: Theme.backgroundAlt
     property int paddingX: 12
     property alias spacing: contentRow.spacing
     property bool useGradient: false
 
-    property int widgetHeight: Theme.scaledBarHeight(QsWindow.window?.screen) - (15 * _uiScale)
-
-    readonly property real iconSize: Math.max(13, widgetHeight * 0.55)
-    readonly property real fontSize: Math.max(11, widgetHeight * 0.37)
-    readonly property real smallFontSize: Math.max(9, widgetHeight * 0.31)
-
-    readonly property alias contentRow: contentRow
+    
 
     // The widget's STABLE preferred content width — defaults to
     // contentRow.implicitWidth (fine for ordinary widgets whose

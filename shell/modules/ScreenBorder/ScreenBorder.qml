@@ -97,6 +97,7 @@ Variants {
             Bar {
                 id: bar
                 visible: !visualWindow.hasFullscreen
+                hostWindow: visualWindow
             }
 
             OSD {

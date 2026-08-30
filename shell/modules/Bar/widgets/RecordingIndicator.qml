@@ -4,7 +4,6 @@ import qs.services
 
 BarWidget {
     id: root
-
     visible: ScreenRecordService.isRecording
     bgColor: hover.hovered ? Qt.rgba(Theme.color1.r, Theme.color1.g, Theme.color1.b, 0.12) : "transparent"
     spacing: 6

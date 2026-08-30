@@ -7,14 +7,15 @@ import "widgets/Workspaces"
 import "widgets/InternalTrayWidget"
 
 Item {
-    id: myBar
-
+    id: root
+    required property PanelWindow hostWindow
+    
     anchors {
         left: parent.left
         right: parent.right
         top: parent.top
     }
-    height: Theme.scaledBarHeight(QsWindow.window?.screen)
+    height: Theme.scaledBarHeight(hostWindow.screen)
 
     Rectangle {
         anchors.fill: parent
@@ -36,6 +37,7 @@ Item {
         Clock {
             id: clockWidget
             anchors.centerIn: parent
+            hostWindow: root.hostWindow
         }
 
         // ── Left cluster ──────────────────────────────────────────
@@ -61,12 +63,15 @@ Item {
 
             LauncherButton {
                 id: launcherButton
+                hostWindow: root.hostWindow
             }
             Workspaces {
                 id: workspacesWidget
+                hostWindow: root.hostWindow
             }
             ActiveWindow {
                 id: activeWindowWidget
+                hostWindow: root.hostWindow
                 Layout.fillWidth: true
                 Layout.minimumWidth: 0
             }
@@ -90,24 +95,31 @@ Item {
 
             RecordingIndicator {
                 id: recordingIndicator
+                hostWindow: root.hostWindow
             }
             TrayWidget {
                 id: sysTrayWidget
+                hostWindow: root.hostWindow
             }
             BatteryWidget {
                 id: batteryWidget
+                hostWindow: root.hostWindow
             }
             AudioWidget {
                 id: audioWidget
+                hostWindow: root.hostWindow
             }
             KeyboardWidget {
                 id: keyboardWidget
+                hostWindow: root.hostWindow
             }
             InternalTrayWidget {
                 id: internalSystemTrayWidget
+                hostWindow: root.hostWindow
             }
             PowerButton {
                 id: powerButton
+                hostWindow: root.hostWindow
             }
         }
     }

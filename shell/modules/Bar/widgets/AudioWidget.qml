@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import qs.core
 import qs.services
 
@@ -85,6 +86,7 @@ BarWidget {
 
         showPopup: audioWidget.popupOpened
         targetItem: audioWidget
+        hostWindow: audioWidget.hostWindow
 
         ColumnLayout {
             implicitWidth: 260 * audioPopup.uiScale

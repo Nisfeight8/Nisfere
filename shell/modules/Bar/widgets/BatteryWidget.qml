@@ -1,20 +1,22 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import qs.core
 import qs.services
 
 BarWidget {
     id: root
-
     visible: BatteryService.hasBattery
     spacing: 8
     useGradient: true
+
+
     readonly property bool isCritical: !BatteryService.isCharging && BatteryService.percentage <= 15
     readonly property color statusColor: BatteryService.isCharging ? Theme.selected : (isCritical ? Theme.color1 : Theme.foreground)
+    readonly property bool anyHovered: hover.hovered || root.popupContentHovered
 
     property bool popupOpen: false
     property bool popupContentHovered: false
-    readonly property bool anyHovered: hover.hovered || root.popupContentHovered
 
     onAnyHoveredChanged: {
         if (anyHovered) {
@@ -81,6 +83,7 @@ BarWidget {
         id: batteryPopup
         showPopup: root.popupOpen
         targetItem: root
+        hostWindow: root.hostWindow
 
         contentComponent: Component {
             ColumnLayout {
