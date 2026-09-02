@@ -19,11 +19,6 @@ Singleton {
 
     onFailed: error => InternalNotificationService.send("Recording failed", error, "dialog-error", "critical")
 
-    property Process _mkdirProc: Process {
-        command: ["mkdir", "-p", Quickshell.env("HOME") + "/Videos/Recordings"]
-        running: true
-    }
-
     function _outputPath() {
         let dir = Quickshell.env("HOME") + "/Videos/Recordings";
         return dir + "/" + Qt.formatDateTime(new Date(), "yyyyMMdd_HHmmss") + ".mp4";

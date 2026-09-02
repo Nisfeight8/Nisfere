@@ -19,12 +19,6 @@ Singleton {
 
     onFailed: error => InternalNotificationService.send("Screenshot failed", error, "dialog-error", "critical")
 
-    // Ensure output directory exists
-    property Process _mkdirProc: Process {
-        command: ["mkdir", "-p", Quickshell.env("HOME") + "/Pictures/Screenshots"]
-        running: true
-    }
-
     function _outputPath() {
         let dir = Quickshell.env("HOME") + "/Pictures/Screenshots";
         return dir + "/" + Qt.formatDateTime(new Date(), "yyyyMMdd_HHmmss") + ".png";

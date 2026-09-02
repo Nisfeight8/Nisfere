@@ -15,14 +15,6 @@ Singleton {
     readonly property string avatarPath: _adapter.avatarPath
     readonly property bool hasAvatar: avatarPath !== ""
 
-    // Ensures ~/.cache/nisfere exists — same pattern already used for
-    // Screenshots/Recordings output dirs (ScreenshotService's/
-    // ScreenRecordService's own _mkdirProc).
-    property Process _mkdirProc: Process {
-        command: ["mkdir", "-p", Quickshell.env("HOME") + "/.cache/nisfere"]
-        running: true
-    }
-
     property FileView _fileView: FileView {
         path: Quickshell.env("HOME") + "/.cache/nisfere/avatar.json"
         watchChanges: true
